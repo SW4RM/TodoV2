@@ -10,7 +10,7 @@
   <TextView
       android:id="@+id/textViewTodo"
       android:layout_width="330dp"
-      android:layout_height="336dp"
+      android:layout_height="280dp"
       android:layout_marginLeft="16dp"
       android:layout_marginRight="16dp"
       android:layout_marginTop="16dp"
@@ -30,12 +30,10 @@
       android:layout_height="wrap_content"
       android:layout_marginBottom="16dp"
       android:layout_marginLeft="16dp"
-      android:layout_marginRight="176dp"
       android:text="prev"
       app:layout_constraintBottom_toBottomOf="parent"
-      app:layout_constraintHorizontal_bias="1.0"
       app:layout_constraintLeft_toLeftOf="parent"
-      app:layout_constraintRight_toLeftOf="@+id/buttonNext"/>
+   ></Button>
 
   <Button
       android:id="@+id/buttonNext"

@@ -85,7 +85,6 @@ public class TodoDetailActivity extends AppCompatActivity {
         }
 
 
-
         // initialize member TextView so we can manipulate it later
 
         TextView TodoDetailTextView;
@@ -96,21 +95,24 @@ public class TodoDetailActivity extends AppCompatActivity {
 
         // get the intent extra int for the todos index
 
-        int mTodoIndex = getIntent().getIntExtra(TODO_INDEX, 0);
+        final int mTodoIndex = getIntent().getIntExtra(TODO_INDEX, 0);
 
         updateTextViewTodoDetail(mTodoIndex);
 
 
 
-        CheckBox checkboxIsComplete = (CheckBox)findViewById(R.id.checkBoxIsComplete);
+        final CheckBox checkboxIsComplete = (CheckBox)findViewById(R.id.checkBoxIsComplete);
 
         // Register the onClick listener with the generic implementation mTodoListener
 
-        checkboxIsComplete.setOnClickListener(mTodoListener);
+      checkboxIsComplete.setOnClickListener(mTodoListener);
 
 
+        Button buttonTodoHome = (Button) findViewById(R.id.buttonTodoHome);
+        buttonTodoHome.setOnClickListener(mTodoListener);
+        }
 
-    }
+
 
 
 
@@ -148,13 +150,14 @@ public class TodoDetailActivity extends AppCompatActivity {
 
     // Create an anonymous implementation of OnClickListener for all clickable view objects
 
+
     private OnClickListener mTodoListener = new OnClickListener() {
 
         public void onClick(View v) {
 
             // get the clicked object and do something
 
-            switch (v.getId() /*to get clicked view object id**/) {
+            switch (R.id.checkBoxIsComplete /*to get clicked view object id**/) {
 
                 case R.id.checkBoxIsComplete:
 
@@ -207,6 +210,7 @@ public class TodoDetailActivity extends AppCompatActivity {
         setResult(RESULT_OK, intent);
 
     }
+
 
 
 

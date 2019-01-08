@@ -16,7 +16,6 @@ public class TodoActivity extends AppCompatActivity {
     public static final String TAG = "TodoActivity";
     private String[] mTodos;
     private int mTodoIndex = 0;
-    private int TodoEnd = 0;
     private static final String IS_TODO_COMPLETE = "com.example.isTodoComplete";
     private static final String TODO_INDEX = "com.example.TodoIndex";
     private static final int IS_SUCCESS = 0;
@@ -25,6 +24,7 @@ public class TodoActivity extends AppCompatActivity {
         super.onSaveInstanceState(savedInstanceState);
         savedInstanceState.putInt(TODO_INDEX, mTodoIndex);
     }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
