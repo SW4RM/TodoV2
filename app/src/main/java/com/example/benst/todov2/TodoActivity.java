@@ -16,6 +16,7 @@ public class TodoActivity extends AppCompatActivity {
     public static final String TAG = "TodoActivity";
     private String[] mTodos;
     private int mTodoIndex = 0;
+    private int TodoEnd = 0;
     private static final String IS_TODO_COMPLETE = "com.example.isTodoComplete";
     private static final String TODO_INDEX = "com.example.TodoIndex";
     private static final int IS_SUCCESS = 0;
@@ -46,9 +47,11 @@ public class TodoActivity extends AppCompatActivity {
         mTodos = res.getStringArray(R.array.todo);
         // display the first task from mTodo array in the TodoTextView
         TodoTextView.setText(mTodos[mTodoIndex]);
-
-        Button buttonNext;
+        final Button buttonNext;
         buttonNext = (Button) findViewById(R.id.buttonNext);
+        final Button buttonPrev;
+        buttonPrev = (Button) findViewById(R.id.buttonPrev);
+        buttonPrev.setEnabled(false);
 
         // OnClick listener for the  Next button
         buttonNext.setOnClickListener(new View.OnClickListener(){
@@ -57,6 +60,13 @@ public class TodoActivity extends AppCompatActivity {
                 mTodoIndex = (mTodoIndex + 1) % mTodos.length;
                 TodoTextView.setText(mTodos[mTodoIndex]); 
                 setTextViewComplete("");
+                if (mTodoIndex == 0) {
+                    buttonPrev.setEnabled(false);
+                }
+                if (mTodoIndex > 0) {
+
+                           buttonPrev.setEnabled(true);
+                }
             }
         });
         Button buttonTodoDetail = (Button) findViewById(R.id.buttonTodoDetail);
@@ -67,10 +77,26 @@ public class TodoActivity extends AppCompatActivity {
                 startActivityForResult(intent, IS_SUCCESS);
             }
         });
+
+
+        //On click listener for Prev button
+        buttonPrev.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mTodoIndex = (mTodoIndex - 1) % mTodos.length;
+                TodoTextView.setText(mTodos[mTodoIndex]);
+                setTextViewComplete("");
+                if (mTodoIndex == 0) {
+                buttonPrev.setEnabled(false);
+            }
+
+            }
+        });
+
     }
 
 
-    protected void onAvtivityResut(int requestCode, int resultCode, Intent intent) {
+    protected void onAtivityResut(int requestCode, int resultCode, Intent intent) {
         if (requestCode == IS_SUCCESS) {
             if (intent != null) {
                 boolean isTodoComplete = intent.getBooleanExtra(IS_TODO_COMPLETE, false);
